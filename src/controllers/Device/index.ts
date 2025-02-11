@@ -33,6 +33,11 @@ interface IssueCertificateRequest {
     certificateRequest: string
 }
 
+interface PingResponse {
+    reportingFrequency: number;
+    operationID: string;
+  }
+
 interface SubmitReceiptRequest {
         receiptType: "FiscalInvoice" | "FiscalInvoiceProforma" | "FiscalReceipt" | "NonFiscalReceipt" | "CreditNote" | "DebitNote" | "CreditNoteProforma" | "DebitNoteProforma";
         receiptCurrency: string;
@@ -433,8 +438,8 @@ PFtwMHe7BUfiwTzGYqav21h1w/amPkxNVQ7Li4M=
 export const submitReciept  = async (req: Request, res: Response) => {
 
     const { deviceID } = req.params; // deviceID from path
-    const deviceModelName = req.headers['devicemodelname']; // DeviceModelName from headers
-    const deviceModelVersion = req.headers['devicemodelversion']; // DeviceModelVersion from headers
+    const deviceModelName = req.header('DeviceModelName');
+    const deviceModelVersion = req.header('DeviceModelVersion');
     const requestBody: SubmitReceiptRequest = req.body; // Body of the request
 
     // Handle mock responses based on some conditions
@@ -481,7 +486,47 @@ export const submitReciept  = async (req: Request, res: Response) => {
 
 
 export const ping  = async (req: Request, res: Response) => {
+ // Extract path parameter (deviceID) and headers (DeviceModelName and DeviceModelVersion)
+ const { deviceID } = req.params; // deviceID from path
+ const deviceModelName = req.header('DeviceModelName');
+ const deviceModelVersion = req.header('DeviceModelVersion');
+ 
+ // Check if the required parameters are missing
+ if (!deviceModelName || !deviceModelVersion) {
+   return res.status(400).json({
+     type: 'https://httpstatuses.io/400',
+     title: 'Bad Request',
+     status: 400,
+     operationID: '00000000',
+   });
+ }
 
+ // Simulate device certificate expiration
+ if (deviceID === '12345') {
+   return res.status(401).json({
+     type: 'https://httpstatuses.io/401',
+     title: 'Device certificate expired.',
+     status: 401,
+     operationID: '0HMPDRRQL1C0G:00000005',
+   });
+ }
+
+ // Simulate server error for specific deviceID
+ if (deviceID === '99999') {
+   return res.status(500).json({
+     type: 'https://httpstatuses.io/500',
+     title: 'Server error',
+     status: 500,
+     operationID: '0HMPDRRQL1C0G:00000005',
+   });
+ }
+
+ // Simulate success response with a mock PingResponse
+ // Return the success response with a 200 status code
+ return res.status(200).json({
+    reportingFrequency: 5,
+    operationID: '0HMS2LV2BED20:00000001',
+  });
 
 }
 
