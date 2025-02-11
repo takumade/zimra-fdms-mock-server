@@ -34,7 +34,7 @@ class App {
         this.app.use('/api/Devices', deviceRoutes);
         this.app.use('/api/Public', publicRoutes);
         this.app.use('/api/User', userRoutes);
-        this.app.use('/api/Products Stock', productsStockRoutes);
+        this.app.use('/api/ProductsStock', productsStockRoutes);
     }
 }
 
