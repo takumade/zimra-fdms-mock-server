@@ -53,7 +53,22 @@ The server will start running on `http://localhost:3000`.
 
 
 
-## Directory Structure
+
+
+### Docker 
+
+```docker
+# Build the Docker image
+docker build -t zimra-mock-server .
+
+# Run the container
+docker run -p 3000:3000 zimra-mock-server
+```
+
+## Contribution
+This project is open source and contributions are welcome. Please fork the repository and submit pull requests. 
+
+### Directory Structure
 
 ```
 src/
@@ -71,18 +86,4 @@ src/
     ├── app.ts
     └── index.ts
 ```
-
-### Docker 
-
-```docker
-# Build the Docker image
-docker build -t zimra-mock-server .
-
-# Run the container
-docker run -p 3000:3000 zimra-mock-server
-```
-
-## Contribution
-This project is open source and contributions are welcome. Please fork the repository and submit pull requests. 
-
 
