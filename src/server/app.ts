@@ -31,10 +31,10 @@ class App {
     }
 
     private routes(): void {
-        this.app.use('/api/Devices', deviceRoutes);
-        this.app.use('/api/Public', publicRoutes);
-        this.app.use('/api/User', userRoutes);
-        this.app.use('/api/ProductsStock', productsStockRoutes);
+        this.app.use('/Device', deviceRoutes);
+        this.app.use('/Public', publicRoutes);
+        this.app.use('/User', userRoutes);
+        this.app.use('/ProductsStock', productsStockRoutes);
     }
 }
 
