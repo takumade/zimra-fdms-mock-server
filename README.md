@@ -13,12 +13,10 @@ This mock server is particularly useful for developers who do not have immediate
 
 ### Installation
 
-### Installation
-
 1. Clone the repository:
    ```
-   git clone https://github.com/takumade/zimra-mock-server.git
-   cd zimra-mock-server
+   git clone https://github.com/takumade/zzimra-fdms-mock-server.git
+   cd zimra-fdms-mock-server
    ```
 
 2. Install dependencies:
