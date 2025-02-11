@@ -11,6 +11,48 @@ This mock server is particularly useful for developers who do not have immediate
 - TypeScript
 - Docker
 
+### Installation
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/takumade/zimra-mock-server.git
+   cd zimra-mock-server
+   ```
+
+2. Install dependencies:
+   - Using npm:
+     ```
+     npm install
+     ```
+   - Using yarn:
+     ```
+     yarn install
+     ```
+   - Using pnpm:
+     ```
+     pnpm install
+     ```
+
+3. Start the server:
+   - Using npm:
+     ```
+     npm start
+     ```
+   - Using yarn:
+     ```
+     yarn start
+     ```
+   - Using pnpm:
+     ```
+     pnpm start
+     ```
+
+The server will start running on `http://localhost:3000`.
+
+
+
 ## Directory Structure
 
 ```
