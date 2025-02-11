@@ -38,6 +38,14 @@ interface PingResponse {
     operationID: string;
   }
 
+  interface SubmittedFileHeaderDtoListResponse {
+    files: Array<{
+      fileName: string;
+      uploadedAt: string;
+      status: string;
+    }>;
+  }
+
 interface SubmitReceiptRequest {
         receiptType: "FiscalInvoice" | "FiscalInvoiceProforma" | "FiscalReceipt" | "NonFiscalReceipt" | "CreditNote" | "DebitNote" | "CreditNoteProforma" | "DebitNoteProforma";
         receiptCurrency: string;
@@ -99,6 +107,66 @@ interface SubmitReceiptRequest {
             hash: string;
             signature: string;
         };
+  }
+  
+  interface Receipt {
+    receiptType: string;
+    receiptCurrency: string;
+    receiptCounter: number;
+    receiptGlobalNo: number;
+    invoiceNo: string;
+    receiptDate: string;
+    receiptLinesTaxInclusive: boolean;
+    receiptLines: Array<{
+      receiptLineType: string;
+      receiptLineNo: number;
+      receiptLineHSCode: string;
+      receiptLineName: string;
+      receiptLinePrice: number;
+      receiptLineQuantity: number;
+      receiptLineTotal: number;
+      taxCode: string;
+      taxPercent: number;
+      taxID: number;
+    }>;
+    receiptTaxes: Array<{
+      taxCode: string;
+      taxPercent: number;
+      taxID: number;
+      taxAmount: number;
+      salesAmountWithTax: number;
+    }>;
+    receiptPayments: Array<{
+      moneyTypeCode: string;
+      paymentAmount: number;
+    }>;
+    receiptTotal: number;
+    receiptPrintForm: string;
+    receiptDeviceSignature: {
+      hash: string;
+      signature: string;
+    };
+  }
+
+  interface RequestBody {
+    header: {
+      deviceId: number;
+      fiscalDayNo: number;
+      fiscalDayOpened: string;
+      fileSequence: number;
+    };
+    content: {
+      receipts: Receipt[];
+    };
+    footer: {
+      fiscalDayCounters: Array<FiscalCounter>;
+      fiscalDayDeviceSignature: {
+        hash: string;
+        signature: string;
+      };
+      receiptCounter: number;
+      fiscalDayClosed: string;
+    };
   }
   
 
@@ -532,10 +600,112 @@ export const ping  = async (req: Request, res: Response) => {
 
 export const submitFile  = async (req: Request, res: Response) => {
 
+    const { deviceID } = req.params;
+    const { DeviceModelName, DeviceModelVersion } = req.headers;
+    const requestBody = req.body;
 
-}
+    if (!requestBody.content) {
+        return res.status(400).json({
+            operationId: generateOperationID(),
+            type: 'https://httpstatuses.io/400',
+            title: 'Bad request',
+            status: 400,
+            detail: 'Content is empty',
+        });
+    }
+    
+
+
+    if (!deviceID || !DeviceModelName || !DeviceModelVersion || !requestBody) {
+      return res.status(400).json({
+        type: 'https://httpstatuses.io/400',
+        title: 'Bad request',
+        status: 400,
+        detail: 'Required parameters are missing',
+      });
+    }
+
+    if (deviceID !== '1111') {
+      return res.status(404).json({
+        type: 'https://httpstatuses.io/404',
+        title: 'Not Found',
+        status: 404,
+        detail:  "Not existing device with provided device id",
+      });
+    }
+
+    if (requestBody.footer.fiscalDayCounters[0].fiscalCounterType !== 'saleByTax') {
+      return res.status(422).json({
+        type: 'https://httpstatuses.io/422',
+        title: 'Unprocessable Entity',
+        status: 422,
+        detail: 'Device fiscal day status must be FiscalDayClosed',
+      });
+    }
+
+    return res.status(200).json({
+      operationID: generateOperationID(),
+
+    });
+  }
 
 export const submittedFileList  = async (req: Request, res: Response) => {
 
+    const {
+        OperationID,
+        FileUploadedFrom,
+        FileUploadedTill,
+        Sort,
+        Order,
+        Offset,
+        Limit,
+        Operator,
+      } = req.query;
 
+      const { deviceID } = req.params;
+      const { DeviceModelName, DeviceModelVersion } = req.headers;
+    
+      console.log('Received parameters:', req.query);
+    
+      // Mock response data
+      const responseData: SubmittedFileHeaderDtoListResponse = {
+        files: [
+          {
+            fileName: 'file1.txt',
+            uploadedAt: '2023-02-11T10:00:00Z',
+            status: 'processed',
+          },
+          {
+            fileName: 'file2.txt',
+            uploadedAt: '2023-02-10T09:30:00Z',
+            status: 'pending',
+          },
+        ],
+      };
+    
+      // Mock response codes based on parameters or logic
+      if (deviceID === 'invalid') {
+        return res.status(404).json({
+          operationId: generateOperationID(),
+          type: 'https://httpstatuses.io/404',
+          title: 'Not Found',
+          status: 404,
+          detail: 'Not existing device with provided device id',
+        });
+      }
+    
+      if (!OperationID) {
+        return res.status(400).json({
+          operationId: generateOperationID(),
+          type: 'https://httpstatuses.io/400',
+          title: 'Bad request',
+          status: 400,
+          detail: 'Operation ID is missing',
+        });
+      }
+    
+      return res.status(200).json({
+        operationId: generateOperationID(),
+        files: responseData.files,
+      });
 }
