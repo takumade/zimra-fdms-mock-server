@@ -22,34 +22,20 @@ This mock server is particularly useful for developers who do not have immediate
    ```
 
 2. Install dependencies:
-   - Using npm:
+   - Using npm/yarn/pnpm:
      ```
-     npm install
-     ```
-   - Using yarn:
-     ```
-     yarn install
-     ```
-   - Using pnpm:
-     ```
-     pnpm install
+     package_manager install
      ```
 
 3. Start the server:
-   - Using npm:
+   - Using npm/yarn/pnpm:
      ```
-     npm start
-     ```
-   - Using yarn:
-     ```
-     yarn start
-     ```
-   - Using pnpm:
-     ```
-     pnpm start
+     package_manager start
      ```
 
-The server will start running on `http://localhost:3000`.
+NB: `package_manager` can be `npm`, `yarn`, or `pnpm`.
+
+NB: The server will start running on `http://localhost:3000`.
 
 
 
