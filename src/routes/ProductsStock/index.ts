@@ -6,4 +6,4 @@ const router = Router();
 // Add your products stock routes here
 // Example: router.get('/', productsStockController.getAllProducts);
 
-export default router;
+export { router as default };
