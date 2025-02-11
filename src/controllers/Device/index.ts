@@ -33,6 +33,70 @@ interface IssueCertificateRequest {
     certificateRequest: string
 }
 
+interface SubmitReceiptRequest {
+        receiptType: "FiscalInvoice" | "FiscalInvoiceProforma" | "FiscalReceipt" | "NonFiscalReceipt" | "CreditNote" | "DebitNote" | "CreditNoteProforma" | "DebitNoteProforma";
+        receiptCurrency: string;
+        receiptCounter: number;
+        receiptGlobalNo: number;
+        invoiceNo: string;
+        buyerData?: {
+            buyerRegisterName: string;
+            buyerTradeName: string;
+            vatNumber?: string;
+            buyerTIN?: string;
+            buyerContacts?: {
+                phoneNo?: string;
+                email?: string;
+            };
+            buyerAddress?: {
+                province?: string;
+                city?: string;
+                street?: string;
+                houseNo?: string;
+                district?: string;
+            };
+        };
+        receiptNotes?: string;
+        receiptDate: string;
+        creditDebitNote?: {
+            receiptID?: number;
+            deviceID?: number;
+            receiptGlobalNo?: number;
+            fiscalDayNo?: number;
+        };
+        receiptLinesTaxInclusive: boolean;
+        receiptLines: Array<{
+            receiptLineType: "Sale" | "Discount";
+            receiptLineNo: number;
+            receiptLineHSCode?: string;
+            receiptLineName: string;
+            receiptLinePrice?: number;
+            receiptLineQuantity: number;
+            receiptLineTotal: number;
+            taxCode?: string;
+            taxPercent?: number;
+            taxID: number;
+        }>;
+        receiptTaxes: Array<{
+            taxCode?: string;
+            taxPercent?: number;
+            taxID: number;
+            taxAmount: number;
+            salesAmountWithTax: number;
+        }>;
+        receiptPayments: Array<{
+            moneyTypeCode: "Cash" | "CreditCard" | "DebitCard" | "Check" | "WireTransfer" | "MobileMoney" | "Voucher" | "Other";
+            paymentAmount: number;
+        }>;
+        receiptTotal: number;
+        receiptPrintForm?: "Receipt48" | "InvoiceA4";
+        receiptDeviceSignature: {
+            hash: string;
+            signature: string;
+        };
+  }
+  
+
 
 export const getConfig = async (req: Request, res: Response) => {
 
@@ -366,3 +430,67 @@ PFtwMHe7BUfiwTzGYqav21h1w/amPkxNVQ7Li4M=
 }
 
 
+export const submitReciept  = async (req: Request, res: Response) => {
+
+    const { deviceID } = req.params; // deviceID from path
+    const deviceModelName = req.headers['devicemodelname']; // DeviceModelName from headers
+    const deviceModelVersion = req.headers['devicemodelversion']; // DeviceModelVersion from headers
+    const requestBody: SubmitReceiptRequest = req.body; // Body of the request
+
+    // Handle mock responses based on some conditions
+    if (!deviceModelName || !deviceModelVersion) {
+      return res.status(400).json({
+        type: 'https://httpstatuses.io/400',
+        title: 'Bad Request',
+        status: 400,
+        operationID: generateOperationID(),
+      });
+    }
+  
+    if (deviceID === '12345') {
+      return res.status(401).json({
+        type: 'https://httpstatuses.io/401',
+        title: 'Device certificate expired.',
+        status: 401,
+        operationID: generateOperationID(),
+      });
+    }
+  
+    // Simulate server error for some condition
+    if (deviceID === '99999') {
+      return res.status(500).json({
+        type: 'https://httpstatuses.io/500',
+        title: 'Server error',
+        status: 500,
+        operationID: generateOperationID(),
+      });
+    }
+  
+    // On success, return the mock response
+    return res.status(200).json({
+        receiptID: 600,
+        serverDate: '2023-05-04T16:45:37',
+        receiptServerSignature: {
+          certificateThumbprint: 'F9B295CA65BA22B94F6D4B27E48D08BF6CD7F7C8',
+          hash: '8IURjBbdTy2b6EnUzSEHHCjIenorq5TdYSCtuzCVisw=',
+          signature: 'gz/JZQVw5Mk7vCTVx02hrZEQS1vAnMIEnwVdl/eouL9SkYbmZFrfQLVtfhPwxM2SCzgrqf9dpuQi1/t9u7T1t5Vvl/vkMW8FLH0u2IReOXLakxFx9TNWu7XH20FqjCJLXOB3NYAiVshAHtYpwPmU9gYCJBTwfhKAjmJaYpIkUvXE+cXKsV4Zxuvm7y25jOGs2RlLExmVw2uT53aRLoLbHdIxaelq8Pgx+YEJQNz9/AniRyjQRdOD5FyQgu00IU9SydrcpkM6xA01fHsNnB53ATb6CdGBAXv88I42n6o8E784CI8wCGWTF6lEoN6sMnLQPqyxY9YQj0ZxcvW5xhC9uA==',
+        },
+        operationID: generateOperationID(),
+});
+}
+
+
+export const ping  = async (req: Request, res: Response) => {
+
+
+}
+
+export const submitFile  = async (req: Request, res: Response) => {
+
+
+}
+
+export const submittedFileList  = async (req: Request, res: Response) => {
+
+
+}
