@@ -1,0 +1,25 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies
+node_modules
+npm-debug.log
+
+# Build output
+dist
+
+# Environment variables
+.env
+.env.*
+
+# Development files
+README.md
+.vscode
+.idea
+*.md
+*.log
+
+# Docker files
+Dockerfile
+.dockerignore
