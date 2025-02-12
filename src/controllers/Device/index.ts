@@ -5,12 +5,9 @@ import generateOperationID from '../../utils/generateOperationID';
 
 import {
   CloseDayRequest,
-  GetConfigResponse,
   IssueCertificateRequest,
   OpenDayRequest,
   PingResponse,
-  SubmitFileRequest,
-  SubmitFileResponse,
   SubmitReceiptRequest,
   SubmittedFileHeaderDtoListResponse
 } from './device.types';
