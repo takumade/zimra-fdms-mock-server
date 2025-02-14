@@ -24,16 +24,16 @@ This is a mock server designed to simulate requests and responses as specified i
 2. Install dependencies:
    - Using npm/yarn/pnpm:
      ```sh
-     package_manager install
+     npm install
      ```
 
 3. Start the server:
    - Using npm/yarn/pnpm:
      ```sh
-     package_manager start
+     npm start
      ```
 
-NB: `package_manager` can be `npm`, `yarn`, or `pnpm`.
+NB: In place of `npm` you can use `yarn`, or `pnpm`.
 
 NB: The server will start running on `http://localhost:3000`.
 
