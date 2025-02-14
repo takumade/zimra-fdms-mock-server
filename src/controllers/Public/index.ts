@@ -121,6 +121,35 @@ export const getServerCertificate  = async (req: Request, res: Response) => {
 
 export const verifyTaxpayerInformation  = async (req: Request, res: Response) => {
 
-    
+    const { deviceID } = req.params;
+    const requestBody = req.body;
+    const operationID = "0HMPDRRQL1C0G:00000005";
+
+    if (!deviceID || isNaN(Number(deviceID))) {
+        return res.status(400).json({
+            type: "https://httpstatuses.io/400",
+            title: "Bad Request",
+            status: 400,
+            operationID
+        });
+    }
+
+    if (!requestBody) {
+        return res.status(422).json({
+            errorCode: "DEV01",
+            type: "https://httpstatuses.io/422",
+            title: "Unprocessable Entity",
+            status: 422,
+            detail: "Device not found or not active",
+            operationID
+        });
+    }
+
+    // Simulating success response
+    return res.status(200).json({
+        operationID,
+        taxpayerVerified: true,
+        message: "Taxpayer information verified successfully"
+    });
 }
 
