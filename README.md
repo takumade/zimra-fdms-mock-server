@@ -57,8 +57,8 @@ This project is open source and contributions are welcome. Please fork the repos
 ### TODO 
 ✅ Device endpoints  <br>
 ✅ Public endpoints  <br>
-- [ ] User endpoints
-- [ ] ProductsStock endpoints
+⏳ User endpoints  <br>
+⏳ ProductsStock endpoints  <br>
 
 ### Directory Structure
 
