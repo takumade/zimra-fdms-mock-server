@@ -1,4 +1,4 @@
-# ZIMRA FDMS Mock Server
+# ZIMRA FDMS Mock Server  🧾
 
 This is a mock server designed to simulate requests and responses as specified in the ZIMRA FDMS API documentation: https://fdmsapitest.zimra.co.zw/swagger/index.html
 
