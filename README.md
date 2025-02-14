@@ -16,20 +16,20 @@ This is a mock server designed to simulate requests and responses as specified i
 ### Installation
 
 1. Clone the repository:
-   ```
+   ```sh
    git clone https://github.com/takumade/zzimra-fdms-mock-server.git
    cd zimra-fdms-mock-server
    ```
 
 2. Install dependencies:
    - Using npm/yarn/pnpm:
-     ```
+     ```sh
      package_manager install
      ```
 
 3. Start the server:
    - Using npm/yarn/pnpm:
-     ```
+     ```sh
      package_manager start
      ```
 
@@ -43,7 +43,7 @@ NB: The server will start running on `http://localhost:3000`.
 
 ### Docker 
 
-```docker
+```sh
 # Build the Docker image
 docker build -t zimra-mock-server .
 
