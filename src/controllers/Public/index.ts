@@ -134,7 +134,7 @@ export const verifyTaxpayerInformation  = async (req: Request, res: Response) =>
         });
     }
 
-    if (!requestBody) {
+    if (!requestBody || !requestBody.activationKey || !requestBody.deviceSerialNo) {
         return res.status(422).json({
             errorCode: "DEV01",
             type: "https://httpstatuses.io/422",
