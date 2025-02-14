@@ -54,9 +54,9 @@ This project is open source and contributions are welcome. Please fork the repos
 
 ### TODO 
 - [x] Device endpoints
-- [ ] User endpoints
+- [] User endpoints
 - [ ] ProductsStock endpoints
-- [ ] Public endpoints
+- [x] Public endpoints
 
 ### Directory Structure
 
@@ -64,6 +64,7 @@ This project is open source and contributions are welcome. Please fork the repos
 src/
 ├── controllers/
 │   ├── Device/
+│   ├── Public/
 │   ├── Public/
 │   ├── User/
 │   └── ProductsStock/
