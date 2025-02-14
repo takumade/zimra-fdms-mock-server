@@ -38,7 +38,8 @@ export const registerDevice  = async (req: Request, res: Response) => {
       });
     }
   
-    if (!requestBody) {
+    if (!requestBody || !requestBody.activationKey || !requestBody.certificateRequest || requestBody.certificateRequest == "invalid" 
+        || requestBody.activationKey != "invalid")  {
       return res.status(422).json({
         errorCode: "DEV01",
         type: "https://httpstatuses.io/422",
@@ -52,7 +53,7 @@ export const registerDevice  = async (req: Request, res: Response) => {
     try {
       const response = {
         operationID: generateOperationID(),
-        certificate: "-----BEGIN CERTIFICATE-----\nMIIC6TCCAdGg...\n-----END CERTIFICATE-----",
+        certificate: "-----BEGIN CERTIFICATE-----\nMIIC6TCCAdGgAwIBAgIFAKsSzWowDQYJKoZIhvcNAQELBQAwZDELMAkGA1UEBhMC\nTFQxETAPBgNVBAoMCEdvb2QgTHRkMScwJQYDVQQLDB5Hb29kIEx0ZCBDZXJ0aWZp\nY2F0ZSBBdXRob3JpdHkxGTAXBgNVBAMMEEdvb2QgTHRkIFJvb3QgQ0EwHhcNMTkx\nMDAzMTU1NzA1WhcNMjAxMDEyMTU1NzA1WjBfMQswCQYDVQQGEwJUWjERMA8GA1UE\nCAwIWmFuemliYXIxHzAdBgNVBAoMFlphbnppYmFyIFJldmVudWUgQm9hcmQxHDAa\nBgNVBAMME1pSQi1lVkZELTAwMDAwMDAwNDIwWTATBgcqhkjOPQIBBggqhkjOPQMB\nBwNCAAT7v3DvY7pRg4lz2Z87wSMwSX27KwlpYnSRV6WUiPjpq2XsUAbg2lhUN7q3\nmlNJaUzqoKPmop5qURIpqUydXfapo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaA\nFK1RXHm1plvaintqlWaXDs1X3LX+MB0GA1UdDgQWBBRqr96XrCUbuwCQawxO0//n\nTOCoNTAOBgNVHQ8BAf8EBAMCBeAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZI\nhvcNAQELBQADggEBANr1Wk1cVZB96yobFgK3rQQv9oXW+Jle7Jh36J2o4wSSB+RH\nlfMojDrqKVQCLrFDcF+8JIA3RTRKdduIXgBAr13xQ8JkHd1/o23yN6a2DaYgh0wr\nDrndlR6y1yG0vQuurJ3IgXmC0ldM5+VhalgmoCKFV9JsUD+GhOyJ6NWlc0SqvJCs\n3RZLYwZ4MNViPbRy0Kbp0ufY1zTbh02Gw9aVfFzUwL8GS00iMb4MnSav1xur7wQh\nBoF3PpNvu003P7f1eVJ62qVD2LWWntfn0mL1aRmDe2wpMQKAKhxto+sDb2mfJ6G6\nPFtwMHe7BUfiwTzGYqav21h1w/amPkxNVQ7Li4M=\n-----END CERTIFICATE-----",
       };
       res.status(200).json(response);
     } catch (error) {
@@ -134,7 +135,8 @@ export const verifyTaxpayerInformation  = async (req: Request, res: Response) =>
         });
     }
 
-    if (!requestBody || !requestBody.activationKey || !requestBody.deviceSerialNo || requestBody.deviceSerialNo == "notFound") {
+    if (!requestBody || !requestBody.activationKey || !requestBody.deviceSerialNo || requestBody.deviceSerialNo == "invalid"
+        || requestBody.activationKey != "invalid") {
         return res.status(422).json({
             errorCode: "DEV01",
             type: "https://httpstatuses.io/422",
