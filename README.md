@@ -55,7 +55,7 @@ docker run -p 3000:3000 zimra-mock-server
 This project is open source and contributions are welcome. Please fork the repository and submit pull requests. 
 
 ### TODO 
-✅ Device endpoints
+✅ Device endpoints \n
 ✅ Public endpoints
 - [ ] User endpoints
 - [ ] ProductsStock endpoints
