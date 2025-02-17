@@ -57,7 +57,7 @@ This project is open source and contributions are welcome. Please fork the repos
 ### Todo
 ✅ Device endpoints  <br>
 ✅ Public endpoints  <br>
-⏳ User endpoints  <br>
+✅ User endpoints  <br>
 ⏳ ProductsStock endpoints  <br>
 
 ### Directory Structure
