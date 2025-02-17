@@ -124,3 +124,25 @@ export const getUsersList = (req: Request, res: Response) => {
       operationID: generateOperationID()
     });
   };
+
+
+export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const Token = req.header("Token");
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { phoneNo } = req.body;
+  
+    if (!deviceID || !Token || !phoneNo) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+  
+    res.status(200).json({
+      operationID: generateOperationID()
+    });
+  };
