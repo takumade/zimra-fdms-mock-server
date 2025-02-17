@@ -74,3 +74,32 @@ export const getUsersList = (req: Request, res: Response) => {
       message: "User created successfully.",
     });
   };
+
+  export const loginUser = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName, password } = req.body;
+  
+    if (!deviceID || !userName || !password) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+  
+    res.status(200).json({
+      operationID: generateOperationID(),
+      token: "mock-jwt-token",
+      user: {
+        userName,
+        personName: "John",
+        personSurname: "Doe",
+        userRole: "Admin",
+        email: "john.doe@example.com",
+        phoneNo: "+123456789",
+      },
+    });
+  };
