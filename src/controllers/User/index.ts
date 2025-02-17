@@ -336,3 +336,76 @@ export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
       operationID: generateOperationID()
     });
   };
+
+
+  export const  resetPassword = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName, channel } = req.body;
+  
+    if (!deviceID || !userName || !channel) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+
+    // Check if oldPassword is wrong
+    if (userName === "invalid" || channel === "invalid") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid user name or channel"
+      });
+    }
+
+    res.status(200).json({
+      operationID: generateOperationID()
+    });
+  };
+
+
+  export const confirmPasswordReset    = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName, securityCode, newPassword } = req.body;
+  
+    if (!deviceID || !securityCode || !newPassword || !userName) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+
+    // Check if userName is wrong
+    if (securityCode === "invalid" || newPassword === "invalid") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid details"
+      });
+    }
+
+  
+    res.status(200).json({
+      operationID: generateOperationID(),
+      "user": {
+        "userName": "johndoe123",
+        "personName": "John",
+        "personSurname": "Doe",
+        "userRole": "User",
+        "email": "john.doe@example.com",
+        "phoneNo": "+1234567890"
+      },
+      "token": "string"
+    });
+  }; 
