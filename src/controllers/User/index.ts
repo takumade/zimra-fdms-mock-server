@@ -39,3 +39,17 @@ export const getUsersList = (req: Request, res: Response) => {
     });
   };
   
+  export const sendSecurityCodeToTaxpayer = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName } = req.body;
+  
+    if (!deviceID || !userName) {
+      return res.status(400).json({ message: "Missing required parameters" });
+    }
+  
+    res.status(200).json({
+      operationID: generateOperationID()
+    });
+  };
