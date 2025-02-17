@@ -187,3 +187,43 @@ export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
       "token": "string"
     });
   };
+
+  export const changePassword = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const Token = req.header("Token");
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { oldPassword, newPassword } = req.body;
+  
+    if (!deviceID || !Token || !oldPassword || !newPassword) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+
+    // Check if oldPassword is wrong
+    if (oldPassword === "invalid") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid old password"
+      });
+    }
+
+    res.status(200).json({
+      operationID: generateOperationID(),
+      "user": {
+        "userName": "johndoe123",
+        "personName": "John",
+        "personSurname": "Doe",
+        "userRole": "User",
+        "email": "john.doe@example.com",
+        "phoneNo": "+1234567890"
+      },
+      "token": "string"
+    });
+  };
