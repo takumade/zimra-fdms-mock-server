@@ -164,22 +164,12 @@ export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
     }
 
     // Check if userName is wrong
-    if (userName === "wrong" || password === "wrong" || securityCode === "wrong") {
+    if (userName === "invalid" || password === "invalid" || securityCode === "invalid") {
       return res.status(400).json({
         type: "https://httpstatuses.io/400",
         title: "Bad Request",
         status: 400,
         detail: "Invalid details"
-      });
-    }
-
-    // Check if password is wrong
-    if (password === "wrong") {
-      return res.status(400).json({
-        type: "https://httpstatuses.io/400",
-        title: "Bad Request",
-        status: 400,
-        detail: "Invalid password"
       });
     }
 
