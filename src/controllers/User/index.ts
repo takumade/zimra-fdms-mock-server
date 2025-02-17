@@ -259,3 +259,80 @@ export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
       operationID: generateOperationID()
     });
   };
+
+
+  export const confirmContact = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+
+    const Token = req.header("Token");
+
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { securityCode,channel   } = req.body;
+  
+    if (!deviceID || !securityCode || !channel) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+
+    // Check if userName is wrong
+    if (securityCode === "invalid" || channel === "invalid") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid details"
+      });
+    }
+
+  
+    res.status(200).json({
+      operationID: generateOperationID(),
+      "user": {
+        "userName": "johndoe123",
+        "personName": "John",
+        "personSurname": "Doe",
+        "userRole": "User",
+        "email": "john.doe@example.com",
+        "phoneNo": "+1234567890"
+      }
+    });
+  }; 
+  
+  
+
+  export const update = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const Token = req.header("Token");
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName, personName, personSurname, userRole, userStatus } = req.body;
+  
+    if (!deviceID || !userName || !personName || !personSurname || !userRole || !userStatus) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+
+    // Check if userName is wrong
+    if (userName === "invalid") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid details"
+      });
+    }
+
+  
+    res.status(200).json({
+      operationID: generateOperationID()
+    });
+  };
