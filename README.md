@@ -58,7 +58,12 @@ This project is open source and contributions are welcome. Please fork the repos
 ✅ Device endpoints  <br>
 ✅ Public endpoints  <br>
 ✅ User endpoints  <br>
-⏳ ProductsStock endpoints  <br>
+✅ ProductsStock endpoints  <br>
+⏳ Make mock server as realistic as possible  <br>
+
+
+> [!NOTE]
+> Most of the endpoints are mocked but I want it to be as realistic as possible. An average user shouldnt tell the difference between the mock server and the original server. 😊
 
 ### Directory Structure
 
