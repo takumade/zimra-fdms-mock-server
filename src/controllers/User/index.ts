@@ -61,7 +61,12 @@ export const getUsersList = (req: Request, res: Response) => {
     const { userName, personName, personSurname, userRole } = req.body;
   
     if (!deviceID || !userName || !personName || !personSurname || !userRole) {
-      return res.status(400).json({ message: "Missing required parameters" });
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
     }
   
     res.status(200).json({
