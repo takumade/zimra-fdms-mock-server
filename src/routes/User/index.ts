@@ -7,18 +7,18 @@ const router = Router();
 // Example: router.get('/', userController.getAllUsers);
 
 
-router.get('/v1/:deviceID/GetUsersList', () =>{});
-router.post('/v1/:deviceID/SendSecurityCodeToTaxpayer', () =>{});
-router.post('/v1/:deviceID/CreateUser', () =>{});
-router.post('/v1/:deviceID/Login', () =>{});
-router.post('/v1/:deviceID/SendSecurityCodeToUserPhone', () =>{});
-router.post('/v1/:deviceID/SendSecurityCodeToUserEmail', () =>{});
-router.post('/v1/:deviceID/ConfirmUser', () =>{});
-router.post('/v1/:deviceID/ChangePassword', () =>{});
-router.post('/v1/:deviceID/ResetPassword', () =>{});
-router.post('/v1/:deviceID/ConfirmContact', () =>{});
-router.post('/v1/:deviceID/Update', () =>{});
-router.post('/v1/:deviceID/ConfirmPasswordReset', () =>{});
+router.get('/v1/:deviceID/GetUsersList', userController.getUsersList);
+router.post('/v1/:deviceID/SendSecurityCodeToTaxpayer', userController.sendSecurityCodeToTaxpayer);
+router.post('/v1/:deviceID/CreateUser', userController.createUser);
+router.post('/v1/:deviceID/Login', userController.loginUser);
+router.post('/v1/:deviceID/SendSecurityCodeToUserPhone', userController.sendSecurityCodeToUserPhone);
+router.post('/v1/:deviceID/SendSecurityCodeToUserEmail', userController.sendSecurityCodeToUserEmail);
+router.post('/v1/:deviceID/ConfirmUser', userController.confirmUser);
+router.post('/v1/:deviceID/ChangePassword', userController.changePassword);
+router.post('/v1/:deviceID/ResetPassword', userController.resetPassword);
+router.post('/v1/:deviceID/ConfirmContact', userController.confirmContact);
+router.post('/v1/:deviceID/Update', userController.update);
+router.post('/v1/:deviceID/ConfirmPasswordReset', userController.confirmPasswordReset);
 
 
 export { router as default };
