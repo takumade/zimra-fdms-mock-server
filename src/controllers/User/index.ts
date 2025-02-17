@@ -53,3 +53,19 @@ export const getUsersList = (req: Request, res: Response) => {
       operationID: generateOperationID()
     });
   };
+
+  export const createUser = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName, personName, personSurname, userRole } = req.body;
+  
+    if (!deviceID || !userName || !personName || !personSurname || !userRole) {
+      return res.status(400).json({ message: "Missing required parameters" });
+    }
+  
+    res.status(200).json({
+      operationID: generateOperationID(),
+      message: "User created successfully.",
+    });
+  };
