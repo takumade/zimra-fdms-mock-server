@@ -146,3 +146,54 @@ export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
       operationID: generateOperationID()
     });
   };
+
+
+  export const confirmUser = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName, password, securityCode } = req.body;
+  
+    if (!deviceID || !userName || !password || !securityCode) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+
+    // Check if userName is wrong
+    if (userName === "wrong" || password === "wrong" || securityCode === "wrong") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid details"
+      });
+    }
+
+    // Check if password is wrong
+    if (password === "wrong") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid password"
+      });
+    }
+
+  
+    res.status(200).json({
+      operationID: generateOperationID(),
+      "user": {
+        "userName": "johndoe123",
+        "personName": "John",
+        "personSurname": "Doe",
+        "userRole": "User",
+        "email": "john.doe@example.com",
+        "phoneNo": "+1234567890"
+      },
+      "token": "string"
+    });
+  };
