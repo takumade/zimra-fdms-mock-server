@@ -9,5 +9,6 @@ const router = Router();
 
 router.get('/v1/:deviceID/GetUsersList', () =>{});
 router.post('/v1/:deviceID/SendSecurityCodeToTaxpayer', () =>{});
+router.post('/v1/:deviceID/CreateUser', () =>{});
 
 export { router as default };
