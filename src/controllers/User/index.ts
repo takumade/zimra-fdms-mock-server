@@ -1,17 +1,6 @@
 import { Request, Response } from 'express';
 import generateOperationID from '../../utils/generateOperationID';
 
-// Add your user controller methods here
-// Example:
-// export const getAllUsers = async (req: Request, res: Response) => {
-//     try {
-//         // Implementation
-//     } catch (error) {
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// };
-
-
 export const getUsersList = (req: Request, res: Response) => {
     const { deviceID } = req.params;
     const { Sort, Order, Offset, Limit, Operator } = req.query;
@@ -336,38 +325,6 @@ export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
       operationID: generateOperationID()
     });
   };
-
-
-  export const  resetPassword = (req: Request, res: Response) => {
-    const { deviceID } = req.params;
-    const DeviceModelName = req.header("DeviceModelName");
-    const DeviceModelVersion = req.header("DeviceModelVersion");
-    const { userName, channel } = req.body;
-  
-    if (!deviceID || !userName || !channel) {
-      return res.status(400).json({
-        "type": "https://httpstatuses.io/400",
-        "title": "Bad Request",
-        "status": 400,
-        "detail": "Missing required parameters"
-      });
-    }
-
-    // Check if oldPassword is wrong
-    if (userName === "invalid" || channel === "invalid") {
-      return res.status(400).json({
-        type: "https://httpstatuses.io/400",
-        title: "Bad Request",
-        status: 400,
-        detail: "Invalid user name or channel"
-      });
-    }
-
-    res.status(200).json({
-      operationID: generateOperationID()
-    });
-  };
-
 
   export const confirmPasswordReset    = (req: Request, res: Response) => {
     const { deviceID } = req.params;
