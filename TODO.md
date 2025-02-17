@@ -8,14 +8,14 @@
 
 ## Realism
 
-⏳ Mock expired certificate response at middleware level
-⏳ Mock server error response at middleware level
-⏳ Add realistic token
-⏳ Implement realistic device check
-⏳ Implement realistic certificate check
+⏳ Mock expired certificate response at middleware level <br>
+⏳ Mock server error response at middleware level <br>
+⏳ Add realistic token <br>
+⏳ Implement realistic device check <br>
+⏳ Implement realistic certificate check <br>
 
 ### More research needed
-⏳ Implement realistic user check (maybe not necessary) {use sqlite here}
-⏳ Implement realistic products stock check (maybe not necessary) {use sqlite here}
-⏳ Implement realistic day check (maybe not necessary) {use sqlite here}
+⏳ Implement realistic user check (maybe not necessary) {use sqlite here} <br>
+⏳ Implement realistic products stock check (maybe not necessary) {use sqlite here} <br>
+⏳ Implement realistic day check (maybe not necessary) {use sqlite here} <br>
 
