@@ -227,3 +227,35 @@ export const sendSecurityCodeToUserPhone = (req: Request, res: Response) => {
       "token": "string"
     });
   };
+
+
+
+  export const  resetPassword = (req: Request, res: Response) => {
+    const { deviceID } = req.params;
+    const DeviceModelName = req.header("DeviceModelName");
+    const DeviceModelVersion = req.header("DeviceModelVersion");
+    const { userName, channel } = req.body;
+  
+    if (!deviceID || !userName || !channel) {
+      return res.status(400).json({
+        "type": "https://httpstatuses.io/400",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Missing required parameters"
+      });
+    }
+
+    // Check if oldPassword is wrong
+    if (userName === "invalid" || channel === "invalid") {
+      return res.status(400).json({
+        type: "https://httpstatuses.io/400",
+        title: "Bad Request",
+        status: 400,
+        detail: "Invalid user name or channel"
+      });
+    }
+
+    res.status(200).json({
+      operationID: generateOperationID()
+    });
+  };
