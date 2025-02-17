@@ -63,7 +63,9 @@ This project is open source and contributions are welcome. Please fork the repos
 
 
 > [!NOTE]
-> Most of the endpoints are mocked but I want it to be as realistic as possible. An average user shouldnt tell the difference between the mock server and the original server. 😊
+> Most of the endpoints are mocked but I want it to be as realistic as possible. An average user shouldnt tell the difference between the mock server and the original server. 😊 For more info see [TODO.md](TODO.md) 
+
+
 
 ### Directory Structure
 
