@@ -38,8 +38,42 @@ NB: In place of `npm` you can use `yarn`, or `pnpm`.
 NB: The server will start running on `http://localhost:3000`.
 
 
+## Deploying
+
+### Docker 
+
+To deploy the ZIMRA FDMS Mock Server using Docker, follow these steps:
+
+1. Ensure Docker is installed on your system.
+2. Navigate to the project root directory.
+3. Build and run the Docker container:
+
+```sh
+# Build the Docker image
+docker build -t zimra-mock-server .
+
+# Run the container
+docker run -p 3000:3000 zimra-mock-server
+```
+
+The server will be accessible at `http://localhost:3000`.
+
+
+
+### Live Endpoint
+
+You can access the live endpoint at: 
+
+[https://zimra-fdms-mock-server.onrender.com](https://zimra-fdms-mock-server.onrender.com)
+
+
+Dont abuse it!!!
+
 ## Contribution
 This project is open source and contributions are welcome. Please fork the repository and submit pull requests. 
+
+> [!WARNING]
+> Given that it's a mock server, contributions are most welcome in the form of bug fixes and realism enhancements.
 
 ### Todo
 ✅ Device endpoints  <br>
@@ -73,37 +107,3 @@ src/
     ├── app.ts
     └── index.ts
 ```
-
-## Deploying
-
-### Docker 
-
-### Docker 
-
-To deploy the ZIMRA FDMS Mock Server using Docker, follow these steps:
-
-1. Ensure Docker is installed on your system.
-2. Navigate to the project root directory.
-3. Build and run the Docker container:
-
-```sh
-# Build the Docker image
-docker build -t zimra-mock-server .
-
-# Run the container
-docker run -p 3000:3000 zimra-mock-server
-```
-
-The server will be accessible at `http://localhost:3000`.
-
-
-
-### Live Endpoint
-
-You can access the live endpoint at: 
-
-[https://zimra-fdms-mock-server.onrender.com](https://zimra-fdms-mock-server.onrender.com)
-
-
-Dont abuse it!!!
-
