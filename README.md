@@ -67,12 +67,13 @@ You can access the live endpoint at:
 [https://zimra-fdms-mock-server.onrender.com](https://zimra-fdms-mock-server.onrender.com)
 
 
-Dont abuse it!!!
+> [!NOTE]
+> While this runs on a free tier and won't dip into my pocket, please don't abuse it.
 
 ## Contribution
 This project is open source and contributions are welcome. Please fork the repository and submit pull requests. 
 
-> [!WARNING]
+> [!NOTE]
 > Given that it's a mock server, contributions are most welcome in the form of bug fixes and realism enhancements.
 
 ### Todo
