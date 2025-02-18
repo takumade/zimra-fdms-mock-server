@@ -13,7 +13,7 @@ This is a mock server designed to simulate requests and responses as specified i
 - TypeScript
 - Docker
 
-### Installation
+## Installation
 
 1. Clone the repository:
    ```sh
@@ -37,19 +37,6 @@ NB: In place of `npm` you can use `yarn`, or `pnpm`.
 
 NB: The server will start running on `http://localhost:3000`.
 
-
-
-
-
-### Docker 
-
-```sh
-# Build the Docker image
-docker build -t zimra-mock-server .
-
-# Run the container
-docker run -p 3000:3000 zimra-mock-server
-```
 
 ## Contribution
 This project is open source and contributions are welcome. Please fork the repository and submit pull requests. 
@@ -86,4 +73,37 @@ src/
     ├── app.ts
     └── index.ts
 ```
+
+## Deploying
+
+### Docker 
+
+### Docker 
+
+To deploy the ZIMRA FDMS Mock Server using Docker, follow these steps:
+
+1. Ensure Docker is installed on your system.
+2. Navigate to the project root directory.
+3. Build and run the Docker container:
+
+```sh
+# Build the Docker image
+docker build -t zimra-mock-server .
+
+# Run the container
+docker run -p 3000:3000 zimra-mock-server
+```
+
+The server will be accessible at `http://localhost:3000`.
+
+
+
+### Live Endpoint
+
+You can access the live endpoint at: 
+
+[https://zimra-fdms-mock-server.onrender.com](https://zimra-fdms-mock-server.onrender.com)
+
+
+Dont abuse it!!!
 
