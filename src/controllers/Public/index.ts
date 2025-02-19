@@ -40,7 +40,7 @@ export const registerDevice  = async (req: Request, res: Response) => {
     }
   
     if (!requestBody || !requestBody.activationKey || !requestBody.certificateRequest || requestBody.certificateRequest == "invalid" 
-        || requestBody.activationKey == "invalid")  {
+        || requestBody.activationKey === "invalid")  {
       return res.status(422).json({
         errorCode: "DEV01",
         type: "https://httpstatuses.io/422",
@@ -137,7 +137,7 @@ export const verifyTaxpayerInformation  = async (req: Request, res: Response) =>
     }
 
     if (!requestBody || !requestBody.activationKey || !requestBody.deviceSerialNo || requestBody.deviceSerialNo == "invalid"
-        || requestBody.activationKey == "invalid") {
+        || requestBody.activationKey === "invalid") {
         return res.status(422).json({
             errorCode: "DEV01",
             type: "https://httpstatuses.io/422",
