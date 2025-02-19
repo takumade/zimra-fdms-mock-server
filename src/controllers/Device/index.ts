@@ -444,7 +444,8 @@ export const ping  = async (req: Request, res: Response) => {
 export const submitFile  = async (req: Request, res: Response) => {
 
     const { deviceID } = req.params;
-    const { DeviceModelName, DeviceModelVersion } = req.headers;
+    const DeviceModelName = req.header('DeviceModelName');
+    const DeviceModelVersion = req.header('DeviceModelVersion');
     const requestBody = req.body;
 
     if (!requestBody.content) {
