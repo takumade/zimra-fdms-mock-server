@@ -13,7 +13,8 @@ import generateOperationID from '../../utils/generateOperationID';
 
 export const registerDevice  = async (req: Request, res: Response) => {
     const { deviceID } = req.params;
-    const { DeviceModelName, DeviceModelVersion } = req.headers;
+    const DeviceModelName = req.header('DeviceModelName');
+    const DeviceModelVersion = req.header('DeviceModelVersion');
     const requestBody = req.body;
   
     if (!deviceID || isNaN(Number(deviceID))) {
@@ -39,7 +40,7 @@ export const registerDevice  = async (req: Request, res: Response) => {
     }
   
     if (!requestBody || !requestBody.activationKey || !requestBody.certificateRequest || requestBody.certificateRequest == "invalid" 
-        || requestBody.activationKey != "invalid")  {
+        || requestBody.activationKey === "invalid")  {
       return res.status(422).json({
         errorCode: "DEV01",
         type: "https://httpstatuses.io/422",
@@ -136,7 +137,7 @@ export const verifyTaxpayerInformation  = async (req: Request, res: Response) =>
     }
 
     if (!requestBody || !requestBody.activationKey || !requestBody.deviceSerialNo || requestBody.deviceSerialNo == "invalid"
-        || requestBody.activationKey != "invalid") {
+        || requestBody.activationKey === "invalid") {
         return res.status(422).json({
             errorCode: "DEV01",
             type: "https://httpstatuses.io/422",
